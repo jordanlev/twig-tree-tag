@@ -64,7 +64,7 @@ class TreeTokenParser extends \Twig_TokenParser
                     'child' => $child,
                 ];
 
-            // {% endsubtree
+            // {% endtree
             } else {
 
                 // %}

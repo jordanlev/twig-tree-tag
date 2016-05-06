@@ -17,14 +17,14 @@ $twig = new \Twig_Environment(
 
 $twig->addExtension(new Fuz\Jordan\Twig\Extension\TreeExtension());
 
-(...)
+// (...)
 ```
 
 
 ## Idea
 
 The `{% tree %}` tag works almost like `{% for %}`, but inside a `{% tree %}`, you can call `{% subtree var %}` to
-run your `{% tree %}` block with the given var, recursively.
+run your `{% tree %}` block with the given `var`, recursively.
 
 ## Implementation Example
 
@@ -63,4 +63,4 @@ You can give a name to your trees to call `substree` without ambiguity.
 
 ## Tribute
 
-This extension is called jordan-tree for Jordan Lav, who first thought about it.
+This extension is called jordan-tree for [Jordan Lav](https://github.com/jordanlev), who first thought about it.
