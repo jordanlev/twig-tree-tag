@@ -1,0 +1,8 @@
+{
+    "require": {
+        "twig/twig": "^1.24"
+    },
+    "autoload": {
+         "psr-4": {"Demo\\": "src/"}
+    }
+}
