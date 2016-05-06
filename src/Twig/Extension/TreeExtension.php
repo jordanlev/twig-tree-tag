@@ -2,9 +2,9 @@
 
 namespace Fuz\Jordan\Twig\Extension;
 
-use Fuz\Jordan\TokenParser\TreeTokenParser;
+use Fuz\Jordan\Twig\TokenParser\TreeTokenParser;
 
-class TreeTwigExtension extends \Twig_Extension
+class TreeExtension extends \Twig_Extension
 {
     public function getTokenParsers()
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Jordan\Twig\TokenParser;
+namespace Fuz\Jordan\Twig\TokenParser;
 
-use Jordan\Twig\Node\TreeNode;
+use Fuz\Jordan\Twig\Node\TreeNode;
 
 class TreeTokenParser extends \Twig_TokenParser
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Jordan\Twig\Node;
+namespace Fuz\Jordan\Twig\Node;
 
 class TreeNode extends \Twig_Node
 {
