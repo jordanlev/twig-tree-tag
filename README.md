@@ -1,8 +1,12 @@
-# JordanTree
+# jordan-tree
 
-JordanTree is a proof of concept of a Twig extension built to make tree traversals easy.
+jordan-tree is a proof of concept of a Twig extension built to make tree traversals easy.
 
-Example:
+## Installation
+
+
+
+## Example
 
 ```jinja
 {% tree name, submenu in menu %}
