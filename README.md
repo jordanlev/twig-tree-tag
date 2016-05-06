@@ -8,6 +8,19 @@ jordan-tree is a proof of concept of a Twig extension built to make tree travers
 composer require ninsuo/jordan-tree
 ```
 
+```php
+$loader = require __DIR__.'/vendor/autoload.php';
+
+$twig = new \Twig_Environment(
+    new \Twig_Loader_Filesystem(__DIR__.'/view/')
+);
+
+$twig->addExtension(new Fuz\Jordan\Twig\Extension\TreeExtension());
+
+(...)
+```
+
+
 ## Idea
 
 The `{% tree %}` tag works almost like `{% for %}`, but inside a `{% tree %}`, you can call `{% subtree var %}` to
@@ -50,4 +63,4 @@ You can give a name to your trees to call `substree` without ambiguity.
 
 ## Tribute
 
-This extension is called JordanTree for Jordan Lav, who first thought about it.
+This extension is called jordan-tree for Jordan Lav, who first thought about it.

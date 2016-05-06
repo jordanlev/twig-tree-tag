@@ -18,5 +18,7 @@ php -S localhost:1234
 Then go to:
 
 http://localhost:1234/full_implementation.php
+
 http://localhost:1234/quick_implementation.php
+
 ...
