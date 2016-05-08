@@ -25,7 +25,7 @@ class TreeTokenParser extends \Twig_TokenParser
         // as treeA
         $as = 'default';
         if ($stream->nextIf(\Twig_Token::NAME_TYPE, 'as')) {
-            $as = $this->parser->getStream()->expect(\Twig_Token::NAME_TYPE)->getValue();
+            $as = $stream->expect(\Twig_Token::NAME_TYPE)->getValue();
         }
 
         // %}
@@ -51,7 +51,7 @@ class TreeTokenParser extends \Twig_TokenParser
                 // with treeA
                 $with = $as;
                 if ($stream->nextIf(\Twig_Token::NAME_TYPE, 'with')) {
-                    $with = $this->parser->getStream()->expect(\Twig_Token::NAME_TYPE)->getValue();
+                    $with = $stream->expect(\Twig_Token::NAME_TYPE)->getValue();
                 }
 
                 // %}
