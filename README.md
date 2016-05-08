@@ -67,4 +67,4 @@ $twig->addExtension(new Fuz\Jordan\Twig\Extension\TreeExtension());
 
 The MIT License (MIT)
 
-Please read the [README](README) file for more details.
+Please read the [LICENSE](LICENSE) file for more details.
