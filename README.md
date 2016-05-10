@@ -6,7 +6,7 @@ jordan-tree is a proof of concept of a Twig extension built to make tree travers
 
 The `{% tree %}` tag works almost like `{% for %}`, but inside a `{% tree %}`, you can call `{% subtree var %}` to
 run your `{% tree %}` block with the given `var`, recursively. This extension is called jordan-tree for
-[Jordan Lav](https://github.com/jordanlev), who first thought about it.
+[Jordan Lev](https://github.com/jordanlev), who first thought about it.
 
 ## Implementation Example
 
@@ -21,7 +21,7 @@ run your `{% tree %}` block with the given `var`, recursively. This extension is
 {% endtree %}
 ```
 
-See the [demo](demo/) directory to see full implementations
+See the [demo directory](demo/) to see full implementations
 
 ## What is the `sibling` var?
 
