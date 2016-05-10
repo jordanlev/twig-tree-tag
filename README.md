@@ -12,20 +12,20 @@ run your `{% tree %}` block with the given `var`, recursively. This extension is
 
 ```jinja
 {% tree name, submenu in menu %}
-  {% if sibling.first %}<ul>{% endif %}
+  {% if treesub.first %}<ul>{% endif %}
     <li>
         {{ name }}
         {% subtree submenu %}
     </li>
-  {% if sibling.last %}</ul>{% endif %}
+  {% if treesub.last %}</ul>{% endif %}
 {% endtree %}
 ```
 
 See the [demo directory](demo/) to see full implementations
 
-## What is the `sibling` var?
+## What is the `treesub` var?
 
-The `sibling` var is the very same, and contain the same things as `loop` in a `{% for %}`. It is named
+The `treesub` var is the very same, and contain the same things as `loop` in a `{% for %}`. It is named
 differently so you can use loops inside your `{% tree %}` bodies without conflicts.
 
 ## Nested trees?
@@ -34,12 +34,12 @@ You can give a name to your trees to call `substree` without ambiguity.
 
 ```jinja
 {% tree name, submenu in menu as treeA %}
-  {% if sibling.first %}<ul>{% endif %}
+  {% if treesub.first %}<ul>{% endif %}
     <li>
         {{ name }}
         {% subtree submenu with treeA %}
     </li>
-  {% if sibling.last %}</ul>{% endif %}
+  {% if treesub.last %}</ul>{% endif %}
 {% endtree %}
 ```
 

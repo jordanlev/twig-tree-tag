@@ -39,9 +39,9 @@ class TreeNode extends \Twig_Node
             ->write("\$context['_seq'] = twig_ensure_traversable(\$data);\n")
         ;
 
-        // initializing sibling variable
+        // initializing treeloop variable
         $compiler
-            ->write("\$context['sibling'] = array(\n")
+            ->write("\$context['treeloop'] = array(\n")
             ->write("  'parent' => \$context['_parent'],\n")
             ->write("  'index0' => 0,\n")
             ->write("  'index'  => 1,\n")
@@ -50,10 +50,10 @@ class TreeNode extends \Twig_Node
             ->write("if (is_array(\$context['_seq']) || (is_object(\$context['_seq']) && \$context['_seq'] instanceof Countable)) {\n")
             ->indent()
             ->write("\$length = count(\$context['_seq']);\n")
-            ->write("\$context['sibling']['revindex0'] = \$length - 1;\n")
-            ->write("\$context['sibling']['revindex'] = \$length;\n")
-            ->write("\$context['sibling']['length'] = \$length;\n")
-            ->write("\$context['sibling']['last'] = 1 === \$length;\n")
+            ->write("\$context['treeloop']['revindex0'] = \$length - 1;\n")
+            ->write("\$context['treeloop']['revindex'] = \$length;\n")
+            ->write("\$context['treeloop']['length'] = \$length;\n")
+            ->write("\$context['treeloop']['last'] = 1 === \$length;\n")
             ->outdent()
             ->write("}\n")
         ;
@@ -97,16 +97,16 @@ class TreeNode extends \Twig_Node
             }
         }
 
-        // updating sibling context
+        // updating treeloop context
         $compiler
-            ->write("++\$context['sibling']['index0'];\n")
-            ->write("++\$context['sibling']['index'];\n")
-            ->write("\$context['sibling']['first'] = false;\n")
-            ->write("if (isset(\$context['sibling']['length'])) {\n")
+            ->write("++\$context['treeloop']['index0'];\n")
+            ->write("++\$context['treeloop']['index'];\n")
+            ->write("\$context['treeloop']['first'] = false;\n")
+            ->write("if (isset(\$context['treeloop']['length'])) {\n")
             ->indent()
-            ->write("--\$context['sibling']['revindex0'];\n")
-            ->write("--\$context['sibling']['revindex'];\n")
-            ->write("\$context['sibling']['last'] = 0 === \$context['sibling']['revindex0'];\n")
+            ->write("--\$context['treeloop']['revindex0'];\n")
+            ->write("--\$context['treeloop']['revindex'];\n")
+            ->write("\$context['treeloop']['last'] = 0 === \$context['treeloop']['revindex0'];\n")
             ->outdent()
             ->write("}\n")
         ;
@@ -120,7 +120,7 @@ class TreeNode extends \Twig_Node
         // recovering local scope context and cleaning up
         $compiler
            ->write("\$_parent = \$context['_parent'];\n")
-           ->write('unset($context[\'_seq\'], $context[\'_iterated\'], $context[\''.$this->getNode('key_target')->getAttribute('name').'\'], $context[\''.$this->getNode('value_target')->getAttribute('name').'\'], $context[\'_parent\'], $context[\'sibling\']);'."\n")
+           ->write('unset($context[\'_seq\'], $context[\'_iterated\'], $context[\''.$this->getNode('key_target')->getAttribute('name').'\'], $context[\''.$this->getNode('value_target')->getAttribute('name').'\'], $context[\'_parent\'], $context[\'treeloop\']);'."\n")
            ->write("\$context = array_intersect_key(\$context, \$_parent) + \$_parent;\n")
         ;
 
