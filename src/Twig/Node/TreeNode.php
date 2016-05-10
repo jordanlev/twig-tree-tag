@@ -6,14 +6,14 @@ class TreeNode extends \Twig_Node
 {
     public function __construct(\Twig_Node_Expression_AssignName $keyTarget, \Twig_Node_Expression_AssignName $valueTarget, \Twig_Node_Expression $seq,  $as, array $data, $lineno, $tag)
     {
-        parent::__construct(array(
+        parent::__construct([
             'key_target'   => $keyTarget,
             'value_target' => $valueTarget,
             'seq'          => $seq,
-           ), array(
+           ], [
             'data'         => $data,
             'as'           => $as,
-           ), $lineno, $tag);
+           ], $lineno, $tag);
     }
 
     public function compile(\Twig_Compiler $compiler)
@@ -41,12 +41,12 @@ class TreeNode extends \Twig_Node
 
         // initializing treeloop variable
         $compiler
-            ->write("\$context['treeloop'] = array(\n")
+            ->write("\$context['treeloop'] = [\n")
             ->write("  'parent' => \$context['_parent'],\n")
             ->write("  'index0' => 0,\n")
             ->write("  'index'  => 1,\n")
             ->write("  'first'  => true,\n")
-            ->write(");\n")
+            ->write("];\n")
             ->write("if (is_array(\$context['_seq']) || (is_object(\$context['_seq']) && \$context['_seq'] instanceof Countable)) {\n")
             ->indent()
             ->write("\$length = count(\$context['_seq']);\n")
