@@ -15,7 +15,7 @@ This extension is called jordan-tree for [Jordan Lev](https://github.com/jordanl
 
 ## Usage Example
 
-`menu` is an array of objects, each containing `name`, `url`, and `children` properties (`children` is itself an array of objects with the same properties, etc).
+In this example, `menu` is an array of objects, each containing `name`, `url`, and `children` properties (`children` is itself an array of objects with the same properties, etc).
 
 ```jinja
 {% tree item in menu %}
@@ -36,6 +36,7 @@ Just like a `{% for %}` loop, you can access the key of each list item:
     {% subtree item.children %}
   </li>
 {% endtree %}
+```
 
 See the [demo directory](demo/) for more examples
 
