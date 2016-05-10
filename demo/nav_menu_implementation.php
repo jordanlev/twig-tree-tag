@@ -11,7 +11,7 @@ $twig->addExtension(new Fuz\Jordan\Twig\Extension\TreeExtension());
 class MenuItem {
     public $name;
     public $url;
-    public $children = array();
+    public $children = [];
     
     public function __construct($name, $url) {
         $this->name = $name;
@@ -19,7 +19,7 @@ class MenuItem {
     }
 }
 
-$menu = array();
+$menu = [];
 $menu[1] = new MenuItem('Home', '/');
 $menu[2] = new MenuItem('Products', '/products');
 $menu[2]->children[1] = new MenuItem('First Product', '/products/1');
@@ -36,4 +36,4 @@ $menu[3]->children[2] = new MenuItem('Downtown', '/locations/downtown');
 $menu[3]->children[3] = new MenuItem('Airport', '/locations/airport');
 $menu[4] = new MenuItem('About Us', '/about');
 
-echo $twig->render('nav_menu_implementation.twig', array('menu' => $menu));
+echo $twig->render('nav_menu_implementation.twig', ['menu' => $menu]);
