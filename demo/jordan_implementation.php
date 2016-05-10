@@ -19,7 +19,7 @@ $dir = __DIR__.'/../vendor/twig/twig/lib/Twig';
 
 function createTree($dir) {
     $glob = glob($dir.'/*');
-    $nodes = [];
+    $nodes = array();
     foreach ($glob as $path) {
         $object           = new \stdClass();
         $object->name     = basename($path);
@@ -35,7 +35,7 @@ function createTree($dir) {
     return $nodes;
 }
 
-echo $twig->render('jordan_implementation.twig', [
+echo $twig->render('jordan_implementation.twig', array(
     'items' => createTree($dir)
-]);
+));
 
