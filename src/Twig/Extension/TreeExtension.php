@@ -8,9 +8,9 @@ class TreeExtension extends \Twig_Extension
 {
     public function getTokenParsers()
     {
-        return array(
+        return [
             new TreeTokenParser(),
-        );
+        ];
     }
 
     public function getName() {

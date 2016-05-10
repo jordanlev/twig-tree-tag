@@ -6,13 +6,3 @@
     </li>
   {% if treeloop.last %}</ul>{% endif %}
 {% endtree %}
-
-<pre><code>
-{% tree item in menu %}
-  {% if treeloop.first %}START {{ item.name }}:{% endif %}
-
-    -THIS IS {{ item.name }}
-    {% subtree item.children %}
-  {% if treeloop.last %}END {{ item.name }}{% endif %}
-{% endtree %}
-</code></pre>
