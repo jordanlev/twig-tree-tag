@@ -1,7 +1,7 @@
 {
     "name": "ninsuo/jordan-tree",
     "type": "library",
-    "description": "jordan-tree is a proof of concept of a Twig extension built to make tree traversals easy.",
+    "description": "A Twig extension for succinctly traversing nested lists (e.g. navigation menus).",
     "keywords": [],
     "homepage": "https://github.com/ninsuo/jordan-tree",
     "license": "MIT",

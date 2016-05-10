@@ -33,4 +33,3 @@ function createTree($dir) {
 echo $twig->render('quick_implementation.twig', [
     'files' => createTree($dir)
 ]);
-

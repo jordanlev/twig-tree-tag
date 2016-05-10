@@ -14,6 +14,6 @@ class TreeExtension extends \Twig_Extension
     }
 
     public function getName() {
-        return 'jordan_tree';
+        return 'tree';
     }
 }

@@ -1,8 +1,8 @@
-{% tree key, item in files as treeA %}
+{% tree item in menu %}
   {% if treeloop.first %}<ul>{% endif %}
     <li>
-        {{ key }}
-        {% subtree item with treeA %}
+        <a href="{{ item.url }}">{{ item.name }}</a>
+        {% subtree item.children %}
     </li>
   {% if treeloop.last %}</ul>{% endif %}
 {% endtree %}
