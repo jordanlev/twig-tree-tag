@@ -18,7 +18,7 @@ $dir = __DIR__.'/../vendor/twig/twig/lib/Twig';
 
 function createTree($dir) {
     $glob = glob($dir.'/*');
-    $nodes = [];
+    $nodes = array();
     foreach ($glob as $path) {
         if (is_dir($path)) {
             $nodes[basename($path)] = createTree($path);
@@ -30,7 +30,7 @@ function createTree($dir) {
     return $nodes;
 }
 
-echo $twig->render('full_implementation.twig', [
+echo $twig->render('full_implementation.twig', array(
     'files' => createTree($dir)
-]);
+));
 
