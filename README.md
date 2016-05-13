@@ -43,7 +43,7 @@ See the [demo directory](demo/) for more examples
 
 ## What is the `treeloop` var?
 
-The `treeloop` var serves the same purpose inside a `{% tree %}` tag as the `loop` var does inside a `{% for %} tag. It is named differently so that you can still use `loop` when you have a `{% for %}` tag inside your `{% tree %} tag (otherwise they would conflict).
+The `treeloop` var serves the same purpose inside a `{% tree %}` tag as the `loop` var does inside a `{% for %}` tag. It is named differently so that you can still use `loop` when you have a `{% for %}` tag inside your `{% tree %}` tag (otherwise they would conflict).
 
 
 ## What if I want a tree tag inside another tree tag?
