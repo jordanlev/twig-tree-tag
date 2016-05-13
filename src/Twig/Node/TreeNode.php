@@ -26,12 +26,12 @@ class TreeNode extends \Twig_Node
             throw new \Exception('The {%tree%} Twig tag requires PHP version 5.4 or higher');
         }
 
-        // $tree_treeA = function($data) use (&$context, &$tree_treeA) {
+        // $tree_treeA = function($data, $level) use (&$context, &$tree_treeA) {
         $compiler
             ->write("\$tree_")
             ->raw($this->getAttribute('as'))
             ->raw(" = ")
-            ->raw("function(\$data) use (\$context, &\$tree_")
+            ->raw("function(\$data, \$level) use (&\$context, &\$tree_")
             ->raw($this->getAttribute('as'))
             ->raw(") {\n")
             ->indent()
@@ -39,14 +39,14 @@ class TreeNode extends \Twig_Node
 
         // backuping local scope context
         $compiler
-            ->write("\$context['_parent'] = \$context;\n")
+            ->write("\$context['_parent'][\$level] = \$context;\n")
             ->write("\$context['_seq'] = twig_ensure_traversable(\$data);\n")
         ;
 
         // initializing treeloop variable
         $compiler
             ->write("\$context['treeloop'] = array(\n")
-            ->write("  'parent' => \$context['_parent'],\n")
+            ->write("  'parent' => \$context['_parent'][\$level],\n")
             ->write("  'index0' => 0,\n")
             ->write("  'index'  => 1,\n")
             ->write("  'first'  => true,\n")
@@ -90,7 +90,7 @@ class TreeNode extends \Twig_Node
                         ->raw($data['with'])
                         ->raw("(")
                         ->subcompile($data['child'])
-                        ->raw(");\n")
+                        ->raw(", (\$level + 1));\n")
                         ->outdent()
                         ->write("}")
                     ;
@@ -123,8 +123,8 @@ class TreeNode extends \Twig_Node
 
         // recovering local scope context and cleaning up
         $compiler
-           ->write("\$_parent = \$context['_parent'];\n")
-           ->write('unset($context[\'_seq\'], $context[\'_iterated\'], $context[\''.$this->getNode('key_target')->getAttribute('name').'\'], $context[\''.$this->getNode('value_target')->getAttribute('name').'\'], $context[\'_parent\'], $context[\'treeloop\']);'."\n")
+           ->write("\$_parent = \$context['_parent'][\$level];\n")
+           ->write('unset($context[\'_seq\'], $context[\'_iterated\'], $context[\''.$this->getNode('key_target')->getAttribute('name').'\'], $context[\''.$this->getNode('value_target')->getAttribute('name').'\'], $context[\'_parent\'][$level], $context[\'treeloop\']);'."\n")
            ->write("\$context = array_intersect_key(\$context, \$_parent) + \$_parent;\n")
         ;
 
@@ -137,7 +137,7 @@ class TreeNode extends \Twig_Node
             ->raw($this->getAttribute('as'))
             ->raw("(")
             ->subcompile($this->getNode('seq'))
-            ->raw(");\n")
+            ->raw(", 0);\n")
         ;
     }
 }
