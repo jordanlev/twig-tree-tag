@@ -31,7 +31,7 @@ class TreeNode extends \Twig_Node
             ->write("\$tree_")
             ->raw($this->getAttribute('as'))
             ->raw(" = ")
-            ->raw("function(\$data) use (\$context, &\$tree_")
+            ->raw("function(\$data) use (&\$context, &\$tree_")
             ->raw($this->getAttribute('as'))
             ->raw(") {\n")
             ->indent()
