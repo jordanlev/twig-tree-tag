@@ -31,16 +31,16 @@ class TreeTokenParser extends \Twig_TokenParser
         // %}
         $stream->expect(\Twig_Token::BLOCK_END_TYPE);
 
-        $data = [];
+        $data = array();
         while (true) {
 
             // backing up tag content
-            $data[] = [
+            $data[] = array(
                 'type' => 'body',
                 'node' => $this->parser->subparse(function(\Twig_Token $token) {
-                    return $token->test(['subtree', 'endtree']);
+                    return $token->test(array('subtree', 'endtree'));
                 })
-            ];
+            );
 
             // {% subtree
             if ($stream->next()->getValue() == 'subtree') {
@@ -58,11 +58,11 @@ class TreeTokenParser extends \Twig_TokenParser
                 $stream->expect(\Twig_Token::BLOCK_END_TYPE);
 
                 // backing up subtree details
-                $data[] = [
+                $data[] = array(
                     'type'  => 'subtree',
                     'with'  => $with,
                     'child' => $child,
-                ];
+                );
 
             // {% endtree
             } else {
