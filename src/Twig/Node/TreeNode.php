@@ -22,10 +22,6 @@ class TreeNode extends \Twig_Node
             ->addDebugInfo($this)
         ;
 
-        if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            throw new \Exception('The {%tree%} Twig tag requires PHP version 5.4 or higher');
-        }
-
         // $tree_treeA = function($data, $level) use (&$context, &$tree_treeA) {
         $compiler
             ->write("\$tree_")
