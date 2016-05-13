@@ -22,12 +22,12 @@ class TreeNode extends \Twig_Node
             ->addDebugInfo($this)
         ;
 
-        // $tree_treeA = function($data, $level) use (&$context, &$tree_treeA) {
+        // $tree_treeA = function($data, $level = 0) use (&$context, &$tree_treeA) {
         $compiler
             ->write("\$tree_")
             ->raw($this->getAttribute('as'))
             ->raw(" = ")
-            ->raw("function(\$data, \$level) use (&\$context, &\$tree_")
+            ->raw("function(\$data, \$level = 0) use (&\$context, &\$tree_")
             ->raw($this->getAttribute('as'))
             ->raw(") {\n")
             ->indent()
@@ -86,7 +86,7 @@ class TreeNode extends \Twig_Node
                         ->raw($data['with'])
                         ->raw("(")
                         ->subcompile($data['child'])
-                        ->raw(", (\$level + 1));\n")
+                        ->raw(", \$level + 1);\n")
                         ->outdent()
                         ->write("}")
                     ;
@@ -133,7 +133,8 @@ class TreeNode extends \Twig_Node
             ->raw($this->getAttribute('as'))
             ->raw("(")
             ->subcompile($this->getNode('seq'))
-            ->raw(", 0);\n")
+            ->raw(");\n")
+            ->write("unset(\$context['_parent']);\n")
         ;
     }
 }
