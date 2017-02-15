@@ -1,6 +1,6 @@
 <?php
 
-namespace Fuz\Jordan\Twig\Node;
+namespace JordanLev\TwigTreeTag\Twig\Node;
 
 class TreeNode extends \Twig_Node
 {
@@ -45,6 +45,8 @@ class TreeNode extends \Twig_Node
             ->write("  'parent' => \$context['_parent'][\$level],\n")
             ->write("  'index0' => 0,\n")
             ->write("  'index'  => 1,\n")
+            ->write("  'level0'  => \$level,\n")
+            ->write("  'level'  => \$level + 1,\n")
             ->write("  'first'  => true,\n")
             ->write(");\n")
             ->write("if (is_array(\$context['_seq']) || (is_object(\$context['_seq']) && \$context['_seq'] instanceof Countable)) {\n")
@@ -101,6 +103,8 @@ class TreeNode extends \Twig_Node
         $compiler
             ->write("++\$context['treeloop']['index0'];\n")
             ->write("++\$context['treeloop']['index'];\n")
+            ->write("\$context['treeloop']['level0'] = \$level;\n")
+            ->write("\$context['treeloop']['level'] = \$level + 1;\n")
             ->write("\$context['treeloop']['first'] = false;\n")
             ->write("if (isset(\$context['treeloop']['length'])) {\n")
             ->indent()

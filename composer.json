@@ -1,20 +1,24 @@
 {
-    "name": "ninsuo/jordan-tree",
+    "name": "jordanlev/twig-tree-tag",
     "type": "library",
     "description": "A Twig extension for succinctly traversing nested lists (e.g. navigation menus).",
     "keywords": [],
-    "homepage": "https://github.com/ninsuo/jordan-tree",
+    "homepage": "https://github.com/jordanlev/twig-tree-tag",
     "license": "MIT",
     "authors": [
         {
             "name": "Alain Tiemblo",
             "email": "alain@fuz.org"
+        },
+        {
+            "name": "Jordan Lev",
+            "email": "github@jordanlev.com"
         }
     ],
     "require": {
         "twig/twig": "^1.20"
     },
     "autoload": {
-         "psr-4": {"Fuz\\Jordan\\": "src"}
+         "psr-4": {"JordanLev\\TwigTreeTag\\": "src"}
     }
 }

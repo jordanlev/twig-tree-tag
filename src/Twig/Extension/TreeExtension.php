@@ -1,8 +1,8 @@
 <?php
 
-namespace Fuz\Jordan\Twig\Extension;
+namespace JordanLev\TwigTreeTag\Twig\Extension;
 
-use Fuz\Jordan\Twig\TokenParser\TreeTokenParser;
+use JordanLev\TwigTreeTag\Twig\TokenParser\TreeTokenParser;
 
 class TreeExtension extends \Twig_Extension
 {

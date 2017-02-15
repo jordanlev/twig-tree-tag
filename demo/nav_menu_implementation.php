@@ -6,7 +6,7 @@ $twig = new \Twig_Environment(
     new \Twig_Loader_Filesystem(__DIR__)
 );
 
-$twig->addExtension(new Fuz\Jordan\Twig\Extension\TreeExtension());
+$twig->addExtension(new JordanLev\TwigTreeTag\Twig\Extension\TreeExtension());
 
 class MenuItem {
     public $name;

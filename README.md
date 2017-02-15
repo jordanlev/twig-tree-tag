@@ -1,4 +1,4 @@
-# jordan-tree
+# twig-tree-tag
 
 A Twig extension for succinctly traversing nested lists (e.g. navigation menus).
 
@@ -11,7 +11,7 @@ Requires PHP 5.4 or higher (due to usage of `$this` in anonymous function of com
 The `{% tree %}` tag works almost like `{% for %}`, but inside a `{% tree %}` you can call `{% subtree var %}` to
 recursively run your `{% tree %}` block with the given `var`. The primary use-case for this tag is nested navigation menus.
 
-This extension is called jordan-tree for [Jordan Lev](https://github.com/jordanlev), who suggested the idea to Alain Tiemblo.
+This extension was written by [Alain Tiemblo](https://github.com/ninsuo), (with a few very minor changes by [Jordan Lev](https://github.com/jordanlev)).
 
 ## Usage Example
 
@@ -45,6 +45,20 @@ See the [demo directory](demo/) for more examples
 
 The `treeloop` var serves the same purpose inside a `{% tree %}` tag as the `loop` var does inside a `{% for %}` tag. It is named differently so that you can still use `loop` when you have a `{% for %}` tag inside your `{% tree %}` tag (otherwise they would conflict).
 
+`treeloop` contains all the same [special variables as `loop`](http://twig.sensiolabs.org/doc/2.x/tags/for.html#the-loop-variable):
+ * `treeloop.index`: The current iteration of the loop *within the current nesting level*. (1 indexed)
+ * `treeloop.index0`: The current iteration of the loop *within the current nesting level*. (0 indexed)
+ * `treeloop.revindex`: The number of iterations from the end of the loop *within the current nesting level* (1 indexed)
+ * `treeloop.revindex0`:  The number of iterations from the end of the loop *within the current nesting level* (0 indexed)
+ * `treeloop.first`:  True if first iteration *of the current nesting level*
+ * `treeloop.last`: True if last iteration *of the current nesting level*
+ * `treeloop.length`: The number of items in the sequence *of the current nesting level*
+ * `treeloop.parent`: The context of the parent nesting level (or the parent context of the `tree` tag itself if currently at the root level of the tree).
+
+Additionally, `treeloop` also contains 2 extra variables that tell you about the current nesting level:
+ * `level`: The current nesting level (1 indexed -- so root level of the tree is 1, 2nd-level is 2, etc)
+ * `level0`: The current nesting level (0 indexed -- so root level of the tree is 0, 2nd level is 1, etc)
+
 
 ## What if I want a tree tag inside another tree tag?
 
@@ -71,7 +85,7 @@ To handle the edge case where you want to start a new tree inside another tree (
 ## Installation
 
 ```sh
-composer require ninsuo/jordan-tree
+composer require jordanlev/twig-tree-tag
 ```
 
 ## Usage
@@ -83,7 +97,7 @@ $twig = new \Twig_Environment(
     new \Twig_Loader_Filesystem(__DIR__.'/view/')
 );
 
-$twig->addExtension(new Fuz\Jordan\Twig\Extension\TreeExtension());
+$twig->addExtension(new JordanLev\TwigTreeTag\Twig\Extension\TreeExtension());
 
 // (...)
 ```
