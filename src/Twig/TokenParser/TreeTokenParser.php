@@ -3,8 +3,10 @@
 namespace JordanLev\TwigTreeTag\Twig\TokenParser;
 
 use JordanLev\TwigTreeTag\Twig\Node\TreeNode;
+use Twig\Node\Expression\AssignNameExpression;
+use Twig\Token;
 
-class TreeTokenParser extends \Twig_TokenParser
+class TreeTokenParser extends \Twig\TokenParser\AbstractTokenParser
 {
     // {% tree
     public function getTag()
@@ -12,24 +14,24 @@ class TreeTokenParser extends \Twig_TokenParser
         return 'tree';
     }
 
-    public function parse(\Twig_Token $token)
+    public function parse(Token $token)
     {
         $lineno   = $token->getLine();
         $stream   = $this->parser->getStream();
 
         // key, item in items
         $targets  = $this->parser->getExpressionParser()->parseAssignmentExpression();
-        $stream->expect(\Twig_Token::OPERATOR_TYPE, 'in');
+        $stream->expect(Token::OPERATOR_TYPE, 'in');
         $seq      = $this->parser->getExpressionParser()->parseExpression();
 
         // as treeA
         $as = 'default';
-        if ($stream->nextIf(\Twig_Token::NAME_TYPE, 'as')) {
-            $as = $stream->expect(\Twig_Token::NAME_TYPE)->getValue();
+        if ($stream->nextIf(Token::NAME_TYPE, 'as')) {
+            $as = $stream->expect(Token::NAME_TYPE)->getValue();
         }
 
         // %}
-        $stream->expect(\Twig_Token::BLOCK_END_TYPE);
+        $stream->expect(Token::BLOCK_END_TYPE);
 
         $data = array();
         while (true) {
@@ -37,7 +39,7 @@ class TreeTokenParser extends \Twig_TokenParser
             // backing up tag content
             $data[] = array(
                 'type' => 'body',
-                'node' => $this->parser->subparse(function(\Twig_Token $token) {
+                'node' => $this->parser->subparse(function(Token $token) {
                     return $token->test(array('subtree', 'endtree'));
                 })
             );
@@ -50,12 +52,12 @@ class TreeTokenParser extends \Twig_TokenParser
 
                 // with treeA
                 $with = $as;
-                if ($stream->nextIf(\Twig_Token::NAME_TYPE, 'with')) {
-                    $with = $stream->expect(\Twig_Token::NAME_TYPE)->getValue();
+                if ($stream->nextIf(Token::NAME_TYPE, 'with')) {
+                    $with = $stream->expect(Token::NAME_TYPE)->getValue();
                 }
 
                 // %}
-                $stream->expect(\Twig_Token::BLOCK_END_TYPE);
+                $stream->expect(Token::BLOCK_END_TYPE);
 
                 // backing up subtree details
                 $data[] = array(
@@ -68,7 +70,7 @@ class TreeTokenParser extends \Twig_TokenParser
             } else {
 
                 // %}
-                $stream->expect(\Twig_Token::BLOCK_END_TYPE);
+                $stream->expect(Token::BLOCK_END_TYPE);
                 break;
             }
         }
@@ -76,15 +78,15 @@ class TreeTokenParser extends \Twig_TokenParser
         // key, item
         if (count($targets) > 1) {
             $keyTarget   = $targets->getNode(0);
-            $keyTarget   = new \Twig_Node_Expression_AssignName($keyTarget->getAttribute('name'), $keyTarget->getLine());
+            $keyTarget   = new AssignNameExpression($keyTarget->getAttribute('name'), $keyTarget->getTemplateLine());
             $valueTarget = $targets->getNode(1);
-            $valueTarget = new \Twig_Node_Expression_AssignName($valueTarget->getAttribute('name'), $valueTarget->getLine());
+            $valueTarget = new AssignNameExpression($valueTarget->getAttribute('name'), $valueTarget->getTemplateLine());
 
         // (implicit _key,) item
         } else {
-            $keyTarget   = new \Twig_Node_Expression_AssignName('_key', $lineno);
+            $keyTarget   = new AssignNameExpression('_key', $lineno);
             $valueTarget = $targets->getNode(0);
-            $valueTarget = new \Twig_Node_Expression_AssignName($valueTarget->getAttribute('name'), $valueTarget->getLine());
+            $valueTarget = new AssignNameExpression($valueTarget->getAttribute('name'), $valueTarget->getTemplateLine());
         }
 
         return new TreeNode($keyTarget, $valueTarget, $seq, $as, $data, $lineno, $this->getTag());

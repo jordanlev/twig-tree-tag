@@ -88,6 +88,15 @@ To handle the edge case where you want to start a new tree inside another tree (
 composer require jordanlev/twig-tree-tag
 ```
 
+```yaml
+# services.yaml
+services:
+    twig.tree:
+      class: JordanLev\TwigTreeTag\Twig\Extension\TreeExtension
+      tags:
+        - { name: twig.extension }
+```
+
 ## Usage
 
 ```php

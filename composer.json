@@ -16,9 +16,12 @@
         }
     ],
     "require": {
-        "twig/twig": "^1.20"
+        "twig/twig": "^3.4"
     },
     "autoload": {
          "psr-4": {"JordanLev\\TwigTreeTag\\": "src"}
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^1.6"
     }
 }
