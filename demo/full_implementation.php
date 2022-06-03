@@ -2,8 +2,8 @@
 
 $loader = require __DIR__.'/../vendor/autoload.php';
 
-$twig = new \Twig_Environment(
-    new \Twig_Loader_Filesystem(__DIR__)
+$twig = new \Twig\Environment(
+    new \Twig\Loader\FilesystemLoader(__DIR__)
 );
 
 $twig->addExtension(new JordanLev\TwigTreeTag\Twig\Extension\TreeExtension());
