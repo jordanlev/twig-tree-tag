@@ -26,7 +26,8 @@ class TreeExtension extends AbstractExtension implements ExtensionInterface
 //    public function getName() {
 //        return 'tree';
 //    }
-    public function getOperators()
+
+    public function getOperators(): array
     {
         return [];
     }

@@ -9,7 +9,7 @@ use Twig\Node\Node;
 
 class TreeNode extends Node
 {
-    public function __construct(AssignNameExpression $keyTarget, AssignNameExpression $valueTarget, AbstractExpression $seq,  $as, array $data, $lineno, $tag)
+    public function __construct(AssignNameExpression $keyTarget, AssignNameExpression $valueTarget, AbstractExpression $seq,  string $as, array $data, int $lineno, string $tag)
     {
         parent::__construct(array(
             'key_target'   => $keyTarget,

@@ -4,17 +4,19 @@ namespace JordanLev\TwigTreeTag\Twig\TokenParser;
 
 use JordanLev\TwigTreeTag\Twig\Node\TreeNode;
 use Twig\Node\Expression\AssignNameExpression;
+use Twig\TokenParser\AbstractTokenParser;
+use Twig\Node\Node;
 use Twig\Token;
 
-class TreeTokenParser extends \Twig\TokenParser\AbstractTokenParser
+class TreeTokenParser extends AbstractTokenParser
 {
     // {% tree
-    public function getTag()
+    public function getTag(): string
     {
         return 'tree';
     }
 
-    public function parse(Token $token)
+    public function parse(Token $token): Node
     {
         $lineno   = $token->getLine();
         $stream   = $this->parser->getStream();
