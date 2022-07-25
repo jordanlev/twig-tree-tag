@@ -1,9 +1,8 @@
 # twig-tree-tag
 
-A Twig extension for succinctly traversing nested lists (e.g. navigation menus).  Based on https://github.com/jordanlev/twig-tree-tag, but updated to PHP 8 and Twig 3.
+A Twig extension for succinctly traversing nested lists (e.g. navigation menus).  Based on https://github.com/jordanlev/twig-tree-tag, adapted for PHP 8 and Twig 3 by Tac Tacelosky.
 
 ## Requirements
-
 
 Requires PHP 8.1 or higher
 
