@@ -18,9 +18,7 @@ class TreeExtension extends AbstractExtension implements ExtensionInterface
 
     public function getTokenParsers(): array
     {
-        return array(
-            new TreeTokenParser(),
-        );
+        return [new TreeTokenParser()];
     }
 
 //    public function getName() {

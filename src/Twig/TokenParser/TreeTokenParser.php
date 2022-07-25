@@ -35,16 +35,11 @@ class TreeTokenParser extends AbstractTokenParser
         // %}
         $stream->expect(Token::BLOCK_END_TYPE);
 
-        $data = array();
+        $data = [];
         while (true) {
 
             // backing up tag content
-            $data[] = array(
-                'type' => 'body',
-                'node' => $this->parser->subparse(function(Token $token) {
-                    return $token->test(array('subtree', 'endtree'));
-                })
-            );
+            $data[] = ['type' => 'body', 'node' => $this->parser->subparse(fn(Token $token) => $token->test(['subtree', 'endtree']))];
 
             // {% subtree
             if ($stream->next()->getValue() == 'subtree') {
@@ -62,11 +57,7 @@ class TreeTokenParser extends AbstractTokenParser
                 $stream->expect(Token::BLOCK_END_TYPE);
 
                 // backing up subtree details
-                $data[] = array(
-                    'type'  => 'subtree',
-                    'with'  => $with,
-                    'child' => $child,
-                );
+                $data[] = ['type'  => 'subtree', 'with'  => $with, 'child' => $child];
 
             // {% endtree
             } else {
@@ -78,7 +69,7 @@ class TreeTokenParser extends AbstractTokenParser
         }
 
         // key, item
-        if (count($targets) > 1) {
+        if ((is_countable($targets) ? count($targets) : 0) > 1) {
             $keyTarget   = $targets->getNode(0);
             $keyTarget   = new AssignNameExpression($keyTarget->getAttribute('name'), $keyTarget->getTemplateLine());
             $valueTarget = $targets->getNode(1);

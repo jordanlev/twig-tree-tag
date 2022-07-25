@@ -1,9 +1,9 @@
 {
-    "name": "jordanlev/twig-tree-tag",
+    "name": "tacman/twig-tree-tag",
     "type": "library",
-    "description": "A Twig extension for succinctly traversing nested lists (e.g. navigation menus).",
+    "description": "A Twig extension for succinctly traversing nested lists (e.g. navigation menus), supporting Twig 3",
     "keywords": [],
-    "homepage": "https://github.com/jordanlev/twig-tree-tag",
+    "homepage": "https://github.com/tacman/twig-tree-tag",
     "license": "MIT",
     "authors": [
         {
@@ -13,16 +13,24 @@
         {
             "name": "Jordan Lev",
             "email": "github@jordanlev.com"
+        },
+        {
+            "name": "Tac Tacelosky",
+            "email": "tacman@gmail.com"
         }
     ],
     "require": {
-        "php": ">= 7.4",
-        "twig/twig": "^2|^3"
+        "php": ">= 8.1",
+        "rector/rector": "^0.13.9",
+        "twig/twig": "^3"
+    },
+    "scripts": {
+        "phpstan": "vendor/bin/phpstan"
     },
     "autoload": {
          "psr-4": {"JordanLev\\TwigTreeTag\\": "src"}
     },
     "require-dev": {
-        "phpstan/phpstan": "^1.6"
+        "phpstan/phpstan": "^1.8.2"
     }
 }

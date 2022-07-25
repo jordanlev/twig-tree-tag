@@ -11,14 +11,7 @@ class TreeNode extends Node
 {
     public function __construct(AssignNameExpression $keyTarget, AssignNameExpression $valueTarget, AbstractExpression $seq,  string $as, array $data, int $lineno, string $tag)
     {
-        parent::__construct(array(
-            'key_target'   => $keyTarget,
-            'value_target' => $valueTarget,
-            'seq'          => $seq,
-           ), array(
-            'data'         => $data,
-            'as'           => $as,
-           ), $lineno, $tag);
+        parent::__construct(['key_target'   => $keyTarget, 'value_target' => $valueTarget, 'seq'          => $seq], ['data'         => $data, 'as'           => $as], $lineno, $tag);
     }
 
     public function compile(Compiler $compiler)
