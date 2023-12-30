@@ -1,0 +1,21 @@
+{
+    "name": "tac/demo",
+    "description": "Tree Tag demo",
+    "type": "project",
+    "require": {
+        "twig/twig": "^2.0",
+        "qeep-pro/twig-tree-tag": "^2.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tac\\Demo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tac Tacelosky",
+            "email": "tacman@gmail.com"
+        }
+    ]
+}

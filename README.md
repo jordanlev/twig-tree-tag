@@ -1,10 +1,18 @@
 # twig-tree-tag
 
-A Twig extension for succinctly traversing nested lists (e.g. navigation menus).
+A Twig extension for succinctly traversing nested lists (e.g. navigation menus).  Based on https://github.com/jordanlev/twig-tree-tag, adapted for PHP 8 and Twig 3 by Tac Tacelosky.
 
 ## Requirements
 
-Requires PHP 5.4 or higher (due to usage of `$this` in anonymous function of compiled templates -- unfortunately this is the only way to achieve the desired recursion of a block calling itself).
+Requires PHP 8.1 or higher
+
+
+## Installation
+
+```sh
+composer config repositories.tacman_tree_tag_tag '{"type": "vcs", "url": "git@github.com:tacman/twig-tree-tag.git"}'
+composer require jordanlev/twig-tree-tag
+```
 
 ## Idea
 
@@ -82,10 +90,14 @@ To handle the edge case where you want to start a new tree inside another tree (
 {% endtree %}
 ```
 
-## Installation
 
-```sh
-composer require jordanlev/twig-tree-tag
+```yaml
+# services.yaml
+services:
+    twig.tree:
+      class: JordanLev\TwigTreeTag\Twig\Extension\TreeExtension
+      tags:
+        - { name: twig.extension }
 ```
 
 ## Usage

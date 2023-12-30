@@ -2,21 +2,19 @@
 
 namespace JordanLev\TwigTreeTag\Twig\Node;
 
-class TreeNode extends \Twig_Node
+use Twig\Compiler;
+use Twig\Node\Expression\AbstractExpression;
+use Twig\Node\Expression\AssignNameExpression;
+use Twig\Node\Node;
+
+class TreeNode extends Node
 {
-    public function __construct(\Twig_Node_Expression_AssignName $keyTarget, \Twig_Node_Expression_AssignName $valueTarget, \Twig_Node_Expression $seq,  $as, array $data, $lineno, $tag)
+    public function __construct(AssignNameExpression $keyTarget, AssignNameExpression $valueTarget, AbstractExpression $seq,  string $as, array $data, int $lineno, string $tag)
     {
-        parent::__construct(array(
-            'key_target'   => $keyTarget,
-            'value_target' => $valueTarget,
-            'seq'          => $seq,
-           ), array(
-            'data'         => $data,
-            'as'           => $as,
-           ), $lineno, $tag);
+        parent::__construct(['key_target'   => $keyTarget, 'value_target' => $valueTarget, 'seq'          => $seq], ['data'         => $data, 'as'           => $as], $lineno, $tag);
     }
 
-    public function compile(\Twig_Compiler $compiler)
+    public function compile(Compiler $compiler)
     {
         $compiler
             ->addDebugInfo($this)
