@@ -25,7 +25,7 @@ This extension was written by [Alain Tiemblo](https://github.com/ninsuo), (with 
 
 In this example, `menu` is an array of objects, each containing `name`, `url`, and `children` properties (`children` is itself an array of objects with the same properties, etc).
 
-```jinja
+```twig
 {% tree item in menu %}
   {% if treeloop.first %}<ul>{% endif %}
     <li>
@@ -37,7 +37,7 @@ In this example, `menu` is an array of objects, each containing `name`, `url`, a
 ```
 
 Just like a `{% for %}` loop, you can access the key of each list item:
-```jinja
+```twig
 {% tree key, item in menu %}
   <li>
     <b>Item {{ key }}</b>: {{ item.name }}
