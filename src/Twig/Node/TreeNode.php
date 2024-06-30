@@ -84,7 +84,9 @@ class TreeNode extends Node
                     $compiler
                         ->write("if (is_array(\$context['_seq']) || (is_object(\$context['_seq']) && \$context['_seq'] instanceof Traversable)) {\n")
                         ->indent()
-                        ->write("\$tree_")
+        //            ->write("\$tree_")
+                        // per https://github.com/twigphp/Twig/issues/4110
+                        ->write("yield from \$tree_")
                         ->raw($data['with'])
                         ->raw("(")
                         ->subcompile($data['child'])
