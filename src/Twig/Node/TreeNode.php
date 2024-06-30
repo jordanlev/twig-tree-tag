@@ -34,7 +34,8 @@ class TreeNode extends Node
         // backuping local scope context
         $compiler
             ->write("\$context['_parent'][\$level] = \$context;\n")
-            ->write("\$context['_seq'] = twig_ensure_traversable(\$data);\n")
+            // per https://github.com/twigphp/Twig/issues/4110
+//            ->write("\$context['_seq'] = twig_ensure_traversable(\$data);\n")
         ;
 
         // initializing treeloop variable
@@ -131,7 +132,9 @@ class TreeNode extends Node
         $compiler
             ->outdent()
             ->write("};\n")
-            ->write("\$tree_")
+//            ->write("\$tree_")
+                // per https://github.com/twigphp/Twig/issues/4110
+            ->write("yield from \$tree_")
             ->raw($this->getAttribute('as'))
             ->raw("(")
             ->subcompile($this->getNode('seq'))
