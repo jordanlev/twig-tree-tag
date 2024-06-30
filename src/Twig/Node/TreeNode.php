@@ -36,6 +36,7 @@ class TreeNode extends Node
             ->write("\$context['_parent'][\$level] = \$context;\n")
             // per https://github.com/twigphp/Twig/issues/4110
 //            ->write("\$context['_seq'] = twig_ensure_traversable(\$data);\n")
+            ->write("\$context['_seq'] = CoreExtension::ensureTraversable(\$data);\n")
         ;
 
         // initializing treeloop variable
