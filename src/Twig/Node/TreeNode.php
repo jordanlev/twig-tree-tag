@@ -14,7 +14,7 @@ class TreeNode extends Node
         parent::__construct(['key_target'   => $keyTarget, 'value_target' => $valueTarget, 'seq'          => $seq], ['data'         => $data, 'as'           => $as], $lineno, $tag);
     }
 
-    public function compile(Compiler $compiler)
+    public function compile(Compiler $compiler): void
     {
         $compiler
             ->addDebugInfo($this)
@@ -35,8 +35,6 @@ class TreeNode extends Node
         $compiler
             ->write("\$context['_parent'][\$level] = \$context;\n")
             // per https://github.com/twigphp/Twig/issues/4110
-//            ->write("\$context['_seq'] = twig_ensure_traversable(\$data);\n")
-//            ->write("\$context['_seq'] = CoreExtension::ensureTraversable(\$data);\n")
             ->write("\$context['_seq'] = is_iterable(\$data) ? \$data : [];\n")
 
         ;
