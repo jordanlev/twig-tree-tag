@@ -9,9 +9,19 @@ Requires PHP 8.1 or higher
 
 ## Installation
 
-```sh
-composer config repositories.tacman_tree_tag_tag '{"type": "vcs", "url": "git@github.com:tacman/twig-tree-tag.git"}'
-composer require jordanlev/twig-tree-tag
+```bash
+composer require tacman/twig-tree-tag
+```
+
+Now register it in services.yaml
+
+```yaml
+# services.yaml
+services:
+    twig.tree:
+      class: JordanLev\TwigTreeTag\Twig\Extension\TreeExtension
+      tags:
+        - { name: twig.extension }
 ```
 
 ## Idea
@@ -72,7 +82,7 @@ Additionally, `treeloop` also contains 2 extra variables that tell you about the
 
 To handle the edge case where you want to start a new tree inside another tree (that is, a new tree "root" with its own markup), use `as` in your `{% tree %}` tag to assign each tree to a var name, then pass it into `subtree` via `with`. This allows Twig to know which `{% tree %}` should be called when it comes across the `{% subtree %}` tag. For example...
 
-```jinja
+```twig
 {% tree item in menu as treeA %}
   {% if treeloop.first %}<ul>{% endif %}
     <li>
@@ -90,29 +100,6 @@ To handle the edge case where you want to start a new tree inside another tree (
 {% endtree %}
 ```
 
-
-```yaml
-# services.yaml
-services:
-    twig.tree:
-      class: JordanLev\TwigTreeTag\Twig\Extension\TreeExtension
-      tags:
-        - { name: twig.extension }
-```
-
-## Usage
-
-```php
-$loader = require __DIR__.'/vendor/autoload.php';
-
-$twig = new \Twig_Environment(
-    new \Twig_Loader_Filesystem(__DIR__.'/view/')
-);
-
-$twig->addExtension(new JordanLev\TwigTreeTag\Twig\Extension\TreeExtension());
-
-// (...)
-```
 
 ## License
 
