@@ -1,10 +1,28 @@
 # twig-tree-tag
 
-A Twig extension for succinctly traversing nested lists (e.g. navigation menus).
+A Twig extension for succinctly traversing nested lists (e.g. navigation menus).  Based on https://github.com/jordanlev/twig-tree-tag, adapted for PHP 8 and Twig 3 by Tac Tacelosky.
 
 ## Requirements
 
-Requires PHP 5.4 or higher (due to usage of `$this` in anonymous function of compiled templates -- unfortunately this is the only way to achieve the desired recursion of a block calling itself).
+Requires PHP 8.1 or higher
+
+
+## Installation
+
+```bash
+composer require tacman/twig-tree-tag
+```
+
+Now register it in services.yaml
+
+```yaml
+# services.yaml
+services:
+    twig.tree:
+      class: JordanLev\TwigTreeTag\Twig\Extension\TreeExtension
+      tags:
+        - { name: twig.extension }
+```
 
 ## Idea
 
@@ -17,7 +35,7 @@ This extension was written by [Alain Tiemblo](https://github.com/ninsuo), (with 
 
 In this example, `menu` is an array of objects, each containing `name`, `url`, and `children` properties (`children` is itself an array of objects with the same properties, etc).
 
-```jinja
+```twig
 {% tree item in menu %}
   {% if treeloop.first %}<ul>{% endif %}
     <li>
@@ -29,7 +47,7 @@ In this example, `menu` is an array of objects, each containing `name`, `url`, a
 ```
 
 Just like a `{% for %}` loop, you can access the key of each list item:
-```jinja
+```twig
 {% tree key, item in menu %}
   <li>
     <b>Item {{ key }}</b>: {{ item.name }}
@@ -64,7 +82,7 @@ Additionally, `treeloop` also contains 2 extra variables that tell you about the
 
 To handle the edge case where you want to start a new tree inside another tree (that is, a new tree "root" with its own markup), use `as` in your `{% tree %}` tag to assign each tree to a var name, then pass it into `subtree` via `with`. This allows Twig to know which `{% tree %}` should be called when it comes across the `{% subtree %}` tag. For example...
 
-```jinja
+```twig
 {% tree item in menu as treeA %}
   {% if treeloop.first %}<ul>{% endif %}
     <li>
@@ -82,25 +100,6 @@ To handle the edge case where you want to start a new tree inside another tree (
 {% endtree %}
 ```
 
-## Installation
-
-```sh
-composer require jordanlev/twig-tree-tag
-```
-
-## Usage
-
-```php
-$loader = require __DIR__.'/vendor/autoload.php';
-
-$twig = new \Twig_Environment(
-    new \Twig_Loader_Filesystem(__DIR__.'/view/')
-);
-
-$twig->addExtension(new JordanLev\TwigTreeTag\Twig\Extension\TreeExtension());
-
-// (...)
-```
 
 ## License
 
