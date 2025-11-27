@@ -4,7 +4,7 @@ namespace QEEP\TwigTreeTag\Twig\Extension;
 
 use QEEP\TwigTreeTag\Twig\TokenParser\TreeTokenParser;
 
-class TreeExtension extends \Twig_Extension
+class TreeExtension extends \Twig\Extension\AbstractExtension
 {
     public function __construct()
     {
